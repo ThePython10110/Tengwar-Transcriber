@@ -1,9 +1,20 @@
-const englishInput = document.getElementById("english")
-const tengwarOutput = document.getElementById("output")
-const fontAvailable = document.fonts.check("16px Tengwar Telcontar");
+//A lot of this is ideas copied from Tecendil...
 
-const onChange = function(e) {
-	tengwarOutput.innerHTML = e.target.value;
+var englishInput = document.getElementById("english")
+var tengwarOutput = document.getElementById("output")
+
+function updateOutput(e) {
+	tengwarOutput.innerHTML = parse(e.target.value);
 }
 
-englishInput.addEventListener('input', onChange);
+englishInput.addEventListener('input', updateOutput);
+
+var fontDataMap = {
+	"TengwarTelcontar": {
+		"name": "Tengwar Telcontar",
+		"font": "fonts/TengwarTelcontar.woff2",
+		"fontData": "font-data/TengwarTelcontar.json"
+	}
+}
+
+import fontData from fontDataMap["TengwarTelcontar"]["fontData"] assert {type: "JSON"};

@@ -1,3 +1,5 @@
+/* <stolen from=https://tecendil.com> */
+
 @font-face {
     font-family: telcontar;
     src: url(fonts/TengwarTelcontar.woff2) format('woff2');
@@ -9,3 +11,5 @@
 .TengwarTelcontar {
 	font-family: "telcontar"
 }
+
+/* </stolen> */
