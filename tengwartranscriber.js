@@ -17,7 +17,20 @@ var fontDataMap = {
 	}
 }
 
-import fontData from fontDataMap["TengwarTelcontar"]["fontData"] assert {type: "JSON"};
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+		var JSONResult = JSON.parse(this.responseText);
+	}
+};
+
+function getJSON(filePath) {
+	xmlhttp.open("GET", fontDataMap["TengwarTelcontar"]["fontData"], true);
+	xmlhttp.send();
+	return JSONResult;
+}
+
+fontData = getJSON(fontDataMap["TengwarTelcontar"]["fontData"])
 
 function toCharStrings(inputString) {
 	var splitString = splitCharStrings(inputString);
