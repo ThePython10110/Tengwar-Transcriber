@@ -41,7 +41,7 @@ function toCharStrings(inputString) {
 }
 
 function splitCharStrings(inputString) {
-	return [...inputString.matchAll(/^[^\|\{\[]+?(?=[\|\{\[])|(?<=[\|\{\[])[^\|\}\]]+?$|\|.+?\||\{.+?\}|\[.+?\]|(?<=[\|\}\]]).+?(?=[\|\{\[])|^.+?$/g)]
+	return [...inputString.matchAll(/^[^\|\{\[]+?(?=[\|\{\[])|(?<=[\|\}\]])[^\|\}\]]+?$|\|.+?\||\{.+?\}|\[.+?\]|(?<=[\|\}\]]).+?(?=[\|\{\[])|^.+?$/
 } //that regex took way too long...
 
 function toTengwar(inputString) {
