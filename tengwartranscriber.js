@@ -47,6 +47,7 @@ function splitCharStrings(inputString) {
 function toTengwar(charStrings) {
 	var resultString = "";
 	charStrings.forEach(function(charString) {
+		charString = charString.toString();
 		if (charString.startsWith("|")) {
 			resultString += charString.substring(1,charString.length - 1);
 		}
