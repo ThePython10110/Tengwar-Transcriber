@@ -2,7 +2,7 @@
 	"supportsNormalChars": true,
 	"supportsCapital": true,
 	"smartDiacritics": true,
-	"lowerChars": {
+	"charStrings": {
 		"tinco": "",
 		"parma": "",
 		"calma": "",
@@ -51,9 +51,8 @@
 		"extended-ando": "",
 		"extended-umbar": "",
 		"extended-anga": "",
-		"extended-ungwe": ""
-	}
-	"upperChars": {
+		"extended-ungwe": "",
+		
 		"TINCO": "",
 		"PARMA": "",
 		"CALMA": "",
@@ -102,9 +101,8 @@
 		"EXTENDED-ANDO": "",
 		"EXTENDED-UMBAR": "",
 		"EXTENDED-ANGA": "",
-		"EXTENDED-UNGWE": ""
-	}
-	"diacriticChars": {
+		"EXTENDED-UNGWE": "",
+		
 		"bar-above": "",
 		"bar-below": "",
 		"bar-inside": "",
@@ -129,9 +127,7 @@
 		"yanta-above": "",
 		"thinnas": "",
 		"over-twist": "",
-		"ring-below": ""
-	}
-	"punctuationChars": {
+		"ring-below": "",
 		"pusta": "",
 		"double-pusta": "",
 		"triple-pusta": "",
@@ -143,22 +139,7 @@
 		"question-mark": "",
 		"left-parenthesis": "",
 		"right-parenthesis": "",
-		"roman-question-mark": "?",
-		"roman-exclamation-mark": "!",
-		"roman-period": ".",
-		"roman-comma": ",",
-		"roman-semicolon": ";",
-		"roman-apostrophe": "'",
-		"roman-open-quote": "‘",
-		"roman-close-quote": "’",
-		"roman-left-parenthesis": "(",
-		"roman-right-parenthesis": ")",
-		"roman-colon": ":",
-		"roman-double-quote": "\"",
-		"right-pointing-double-angle-quotation-mark": "»",
-		"left-pointing-double-angle-quotation-mark": "«",
-	}
-	"numberChars": {
+		
 		"zero": "",
 		"one": "",
 		"two": "",
@@ -170,14 +151,12 @@
 		"eight": "",
 		"nine": "",
 		"ten": "",
-		"eleven": ""
-	}
-	"hookChars": {
+		"eleven": "",
 		"left-hook-below": "",
 		"right-hook-below": "",
 		"upward-hook": "",
 		"lifted-hook": "",
 		"low-swash-hook": "",
-		"hook-looped-left": "",
+		"hook-looped-left": ""
 	}
 }
