@@ -4,7 +4,7 @@ var englishInput = document.getElementById("english")
 var tengwarOutput = document.getElementById("output")
 
 function updateOutput(e) {
-	tengwarOutput.innerHTML = toCharStrings(e.target.value);
+	tengwarOutput.innerHTML = toTengwar(splitCharStrings(e.target.value));
 }
 
 englishInput.addEventListener('input', updateOutput);
@@ -36,7 +36,7 @@ fontData = getJSON(fontDataMap["TengwarTelcontar"]["fontData"])
 
 function toCharStrings(inputString) {
 	var splitString = splitCharStrings(inputString);
-	console.log("splitString: " + splitString);
+	//console.log("splitString: " + splitString);
 	return inputString;
 }
 
@@ -44,6 +44,15 @@ function splitCharStrings(inputString) {
 	return [...inputString.matchAll(/^[^\|\{\[]+?(?=[\|\{\[])|(?<=[\|\}\]])[^\|\}\]]+?$|\|.+?\||\{.+?\}|\[.+?\]|(?<=[\|\}\]]).+?(?=[\|\{\[])|^.+?$/g)]
 } //that regex took way too long...
 
-function toTengwar(inputString) {
-	
+function toTengwar(charStrings) {
+	var resultString = "";
+	charStrings.forEach(function(charString) {
+		if (charString.startsWith("|")) {
+			resultString += charString.substring(1,charString.length - 1);
+		}
+		else if (charString.startsWith("{") || charString.startsWith("[")) {
+			resultString += fontData["charStrings"][charString.substring(1,charString.length - 1)];
+		}
+	})
+	return resultString;
 }
