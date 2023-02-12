@@ -4,7 +4,7 @@ var englishInput = document.getElementById("english")
 var tengwarOutput = document.getElementById("output")
 
 function updateOutput(e) {
-	tengwarOutput.innerHTML = toTengwar(splitCharStrings(e.target.value));
+	tengwarOutput.innerHTML = toCharStrings(e);
 }
 
 englishInput.addEventListener('input', updateOutput);
@@ -36,12 +36,12 @@ fontData = getJSON(fontDataMap["TengwarTelcontar"]["fontData"])
 
 function toCharStrings(inputString) {
 	var splitString = splitCharStrings(inputString);
-	//console.log("splitString: " + splitString);
+	console.log("splitString: " + splitString);
 	return inputString;
 }
 
 function splitCharStrings(inputString) {
-	return [...inputString.matchAll(/^[^\|\{\[]+?(?=[\|\{\[])|(?<=[\|\}\]])[^\|\}\]]+?$|\|.+?\||\{.+?\}|\[.+?\]|(?<=[\|\}\]]).+?(?=[\|\{\[])|^.+?$/g)]
+	return [...inputString.toString().matchAll(/^[^\|\{\[]+?(?=[\|\{\[])|(?<=[\|\}\]])[^\|\}\]]+?$|\|.+?\||\{.+?\}|\[.+?\]|(?<=[\|\}\]]).+?(?=[\|\{\[])|^.+?$/g)]
 } //that regex took way too long...
 
 function toTengwar(charStrings) {
