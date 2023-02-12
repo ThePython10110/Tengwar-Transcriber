@@ -4,7 +4,7 @@ var englishInput = document.getElementById("english")
 var tengwarOutput = document.getElementById("output")
 
 function updateOutput(e) {
-	tengwarOutput.innerHTML = toTengwar(toCharStrings(e));
+	tengwarOutput.innerHTML = toTengwar(splitCharStrings(e));
 }
 
 englishInput.addEventListener('input', updateOutput);
