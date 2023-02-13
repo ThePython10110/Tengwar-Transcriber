@@ -17,14 +17,20 @@ var fontDataMap = {
 	}
 }
 
+const request = new XMLHttpRequest();
 
-async function getJSON(filePath) {
-	var response = await fetch(filePath);
-	var json = await response.json();
-	json = JSON.stringify(json);
-	json = JSON.parse(json);
-	return json;
-} //This will probably fail.
+function getJSON(fileLocation) {
+	/*I'm DONE with asynchronous. I know that synchronous requests may slow things down,
+	BUT I JUST DON'T CARE. Loading the JSON asynchronously means making LITERALLY EVERYTHING
+	THAT DEPENDS ON THIS asynchronous as well, meaning about 50000 "await"s or ".then"s, and I
+	don't feel like doing that.*/
+	request.open('GET', 'fileLocation', false);  // `false` makes the request synchronous
+	request.send(null);
+
+	if (request.status === 200) {
+	  return JSON.parse(request.responseText);
+	}	
+}
 
 fontData = getJSON(fontDataMap["TengwarTelcontar"]["fontData"])
 
@@ -46,8 +52,8 @@ function toTengwar(charStrings) {
 			resultString += charString.substring(1,charString.length - 1);
 		}
 		else if (charString.startsWith("{") || charString.startsWith("[")) {
-			fontData.then((json) => {resultString += json["charStrings"][charString.substring(1,charString.length - 1)];})
-		} //Might work... I hate this whole asynchronous web request thing...
+			resultString += fontData["charStrings"][charString.substring(1,charString.length - 1)];
+		}
 	})
 	return resultString;
 }
