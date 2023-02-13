@@ -21,6 +21,8 @@ var fontDataMap = {
 async function getJSON(filePath) {
 	var response = await fetch(filePath);
 	var json = await response.json();
+	json = JSON.stringify(json);
+	json = JSON.parse(json);
 	return json;
 } //This will probably fail.
 
@@ -44,8 +46,8 @@ function toTengwar(charStrings) {
 			resultString += charString.substring(1,charString.length - 1);
 		}
 		else if (charString.startsWith("{") || charString.startsWith("[")) {
-			resultString += fontData["charStrings"][charString.substring(1,charString.length - 1)];
-		}
+			fontData.then((json) => {resultString += fontData["charStrings"][charString.substring(1,charString.length - 1)];})
+		} //Might work... I hate this whole asynchronous web request thing...
 	})
 	return resultString;
 }
