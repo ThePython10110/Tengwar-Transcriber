@@ -21,8 +21,8 @@ var fontDataMap = {
 async function getJSON(filePath) {
 	var response = await fetch(filePath);
 	var json = await response.json();
-	return JSON.parse(json);
-} //This willl probably fail.
+	return json;
+} //This will probably fail.
 
 fontData = getJSON(fontDataMap["TengwarTelcontar"]["fontData"])
 
