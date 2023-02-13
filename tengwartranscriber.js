@@ -37,7 +37,7 @@ englishInput.addEventListener('input', updateOutput);
 
 
 function toCharStrings(inputString) {
-	var splitString = splitCharStrings(inputString);
+	var charStrings = splitCharStrings(inputString);
 	var resultString = ""
 	//console.log("splitString: " + splitString);
 	charStrings.forEach(function (charString) {
