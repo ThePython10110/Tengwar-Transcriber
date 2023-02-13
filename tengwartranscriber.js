@@ -24,7 +24,7 @@ function getJSON(fileLocation) {
 	BUT I JUST DON'T CARE. Loading the JSON asynchronously means making LITERALLY EVERYTHING
 	THAT DEPENDS ON THIS asynchronous as well, meaning about 50000 "await"s or ".then"s, and I
 	don't feel like doing that.*/
-	request.open('GET', 'fileLocation', false);  // `false` makes the request synchronous
+	request.open('GET', fileLocation, false);  // `false` makes the request synchronous
 	request.send(null);
 
 	if (request.status === 200) {
