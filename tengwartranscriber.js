@@ -18,7 +18,7 @@ var fontDataMap = {
 }
 
 
-function getJSON(filePath) {
+async function getJSON(filePath) {
 	var response = await fetch(filePath);
 	var json = await response.json();
 	return JSON.parse(json);
