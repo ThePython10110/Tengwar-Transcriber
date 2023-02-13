@@ -46,7 +46,7 @@ function toTengwar(charStrings) {
 			resultString += charString.substring(1,charString.length - 1);
 		}
 		else if (charString.startsWith("{") || charString.startsWith("[")) {
-			fontData.then((json) => {resultString += fontData["charStrings"][charString.substring(1,charString.length - 1)];})
+			fontData.then((json) => {resultString += json["charStrings"][charString.substring(1,charString.length - 1)];})
 		} //Might work... I hate this whole asynchronous web request thing...
 	})
 	return resultString;
