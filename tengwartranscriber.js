@@ -62,7 +62,7 @@ function toTengwar(inputString) {
 		if (/\|.+?\|/.test(charString)) {
 			resultString += charString.substring(1,charString.length - 1);
 		}
-		else if (\{.+?\}|\[.+?\]/.test(charString)) {
+		else if (/\{.+?\}|\[.+?\]/.test(charString)) {
 			resultString += fontData["charStrings"][charString.substring(1,charString.length - 1)];
 		}
 	})
