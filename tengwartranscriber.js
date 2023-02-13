@@ -42,7 +42,7 @@ function toCharStrings(inputString) {
 	//console.log("splitString: " + splitString);
 	charStrings.forEach(function (charString) {
 		if (/\|.+?\||\{.+?\}|\[.+?\]/.test(charString)) { // |something|, {something}, or [something]
-			resultString += fontData["charStrings"][charString.substring(1,charString.length - 1)];
+			resultString += charString;
 		}
 		else if (!(/.*[\|\{\}\[\]].*/.test(charString))) { //make sure it doesn't include |, {, }, [, or }
 			;			
