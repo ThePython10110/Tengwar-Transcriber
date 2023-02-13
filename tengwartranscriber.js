@@ -47,7 +47,7 @@ function toCharStrings(inputString) {
 		else if (!(/.*[\|\{\}\[\]].*/).test(charString)) { //make sure it doesn't include |, {, }, [, or }
 			;			
 		}
-	}
+	})
 	return resultString;
 }
 
