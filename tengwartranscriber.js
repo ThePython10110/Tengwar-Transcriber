@@ -29,7 +29,7 @@ function getJSON(fileLocation) {
 var fontData = getJSON(fontDataMap["TengwarTelcontar"]["fontData"])
 
 function updateOutput(e) {
-	tengwarOutput.innerHTML = toTengwar(splitCharStrings(englishInput.value));
+	tengwarOutput.innerHTML = toTengwar(toCharStrings(englishInput.value));
 	//console.log(englishInput.value);
 }
 
@@ -44,7 +44,7 @@ function toCharStrings(inputString) {
 		if (/\|.+?\||\{.+?\}|\[.+?\]/.test(charString)) { // |something|, {something}, or [something]
 			resultString += fontData["charStrings"][charString.substring(1,charString.length - 1)];
 		}
-		else if (!(/.*[\|\{\}\[\]].*/).test(charString)) { //make sure it doesn't include |, {, }, [, or }
+		else if (!(/.*[\|\{\}\[\]].*/.test(charString))) { //make sure it doesn't include |, {, }, [, or }
 			;			
 		}
 	})
@@ -56,6 +56,7 @@ function splitCharStrings(inputString) {
 } //Separates "tengwar|ascii|{tinco}en[ungwe]war" into ["tengwar", "|ascii|", "{tinco}", "en", {ungwe}", "war"]
 
 function toTengwar(inputString) {
+	charStrings = splitCharStrings(inputString);
 	var resultString = "";
 	charStrings.forEach(function(charString) {
 		if (/\|.+?\|/.test(charString)) {
