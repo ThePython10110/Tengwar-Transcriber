@@ -52,7 +52,9 @@ function toCharStrings(inputString) {
 }
 
 function splitCharStrings(inputString) {
-	return [...[...inputString.toString().matchAll(/^[^\|\{\[]+?(?=[\|\{\[])|(?<=[\|\}\]])[^\|\}\]]+?$|\|.+?\||\{.+?\}|\[.+?\]|(?<=[\|\}\]]).+?(?=[\|\{\[])|^.+?$/g)][0]];
+	regexResult = inputString.toString().matchAll(/^[^\|\{\[]+?(?=[\|\{\[])|(?<=[\|\}\]])[^\|\}\]]+?$|\|.+?\||\{.+?\}|\[.+?\]|(?<=[\|\}\]]).+?(?=[\|\{\[])|^.+?$/g);
+	arrayOfArrays = [...regexResult];
+	return arrayOfArrays.map(function(x) {return x[0];})
 } //Separates "tengwar|ascii|{tinco}en[ungwe]war" into ["tengwar", "|ascii|", "{tinco}", "en", {ungwe}", "war"]
 
 function toTengwar(inputString) {
