@@ -1,14 +1,8 @@
 //A lot of this is ideas copied from Tecendil...
 
-var englishInput = document.getElementById("english")
-var tengwarOutput = document.getElementById("output")
-
-function updateOutput(e) {
-	tengwarOutput.innerHTML = toTengwar(splitCharStrings(englishInput.value));
-	//console.log(englishInput.value);
-}
-
-englishInput.addEventListener('input', updateOutput);
+const englishInput = document.getElementById("english")
+const tengwarOutput = document.getElementById("output")
+const request = new XMLHttpRequest();
 
 var fontDataMap = {
 	"TengwarTelcontar": {
@@ -18,7 +12,6 @@ var fontDataMap = {
 	}
 }
 
-const request = new XMLHttpRequest();
 
 function getJSON(fileLocation) {
 	/*I'm DONE with asynchronous. I know that synchronous requests may slow things down,
@@ -33,26 +26,42 @@ function getJSON(fileLocation) {
 	}	
 }
 
-fontData = getJSON(fontDataMap["TengwarTelcontar"]["fontData"])
+var fontData = getJSON(fontDataMap["TengwarTelcontar"]["fontData"])
+
+function updateOutput(e) {
+	tengwarOutput.innerHTML = toTengwar(splitCharStrings(englishInput.value));
+	//console.log(englishInput.value);
+}
+
+englishInput.addEventListener('input', updateOutput);
+
 
 function toCharStrings(inputString) {
 	var splitString = splitCharStrings(inputString);
-	console.log("splitString: " + splitString);
-	return inputString;
+	var resultString = ""
+	//console.log("splitString: " + splitString);
+	charStrings.forEach(function (charString) {
+		if (/\|.+?\||\{.+?\}|\[.+?\]/.test(charString)) { // |something|, {something}, or [something]
+			resultString += fontData["charStrings"][charString.substring(1,charString.length - 1)];
+		}
+		else if (!(/.*[\|\{\}\[\]].*/).test(charString)) { //make sure it doesn't include |, {, }, [, or }
+			;			
+		}
+	}
+	return resultString;
 }
 
 function splitCharStrings(inputString) {
-	return [...inputString.toString().matchAll(/^[^\|\{\[]+?(?=[\|\{\[])|(?<=[\|\}\]])[^\|\}\]]+?$|\|.+?\||\{.+?\}|\[.+?\]|(?<=[\|\}\]]).+?(?=[\|\{\[])|^.+?$/g)]
-} //that regex took way too long...
+	return [...[...inputString.toString().matchAll(/^[^\|\{\[]+?(?=[\|\{\[])|(?<=[\|\}\]])[^\|\}\]]+?$|\|.+?\||\{.+?\}|\[.+?\]|(?<=[\|\}\]]).+?(?=[\|\{\[])|^.+?$/g)][0]];
+} //Separates "tengwar|ascii|{tinco}en[ungwe]war" into ["tengwar", "|ascii|", "{tinco}", "en", {ungwe}", "war"]
 
-function toTengwar(charStrings) {
+function toTengwar(inputString) {
 	var resultString = "";
 	charStrings.forEach(function(charString) {
-		charString = charString[0].toString();
-		if (charString.startsWith("|")) {
+		if (/\|.+?\|/.test(charString)) {
 			resultString += charString.substring(1,charString.length - 1);
 		}
-		else if (charString.startsWith("{") || charString.startsWith("[")) {
+		else if (\{.+?\}|\[.+?\]/.test(charString)) {
 			resultString += fontData["charStrings"][charString.substring(1,charString.length - 1)];
 		}
 	})
