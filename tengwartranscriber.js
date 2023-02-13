@@ -17,20 +17,10 @@ var fontDataMap = {
 	}
 }
 
-var JSONResult;
-
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-	if (this.readyState == 4 && this.status == 200) {
-		JSONResult = JSON.parse(this.responseText);
-	}
-};
 
 function getJSON(filePath) {
-	xmlhttp.open("GET", fontDataMap["TengwarTelcontar"]["fontData"], true);
-	xmlhttp.send();
-	return JSONResult;
-}
+	return JSON.parse(fetch(filePath).then((json) => return json)));
+} //This willl probably fail.
 
 fontData = getJSON(fontDataMap["TengwarTelcontar"]["fontData"])
 
